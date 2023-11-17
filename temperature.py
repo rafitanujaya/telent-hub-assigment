@@ -1,36 +1,48 @@
 def convertTemperature(temperature, type, convertTo):
     
+    def kelvinToCelcius(temperatureKelvin):
+        return temperatureKelvin - 273.15
+    
+    def celciusToKelvin(temperatureCelcius):
+        return temperatureCelcius + 273.15
+    
+    def celciusToFahrenheit(temperatureCelcius):
+        return (temperatureCelcius * 9/5) + 32
+    
+    def fahrenheitToCelcius(temperatureCelcius):
+        return (temperatureCelcius - 32) * 5/9
+    
     # kelvin convert to celcius
     if type == "kelvin" and convertTo == "celcius" :
-        celsius = temperature - 273.15
+        celsius = kelvinToCelcius(temperature)
         return f"Suhu {temperature} Kelvin dikonversi ke Celsius = {celsius} °C"
     
     # celcius convert to kelvin
     elif type == "celcius" and convertTo == "kelvin" :
-        kelvin = temperature + 273.15
+        kelvin = celciusToKelvin(temperature)
         return f"Suhu {temperature} Celsius dikonversi ke Kelvin = {kelvin} K"
     
     
     #  Celsius to Fahrenheit 
     elif type == "celcius" and convertTo == "fahrenheit":
-        fahrenheit = (temperature * 9/5) + 32
+        fahrenheit = celciusToFahrenheit(temperature)
         return f"Suhu {temperature} Celsius dikonversi ke Fahrenheit = {fahrenheit} °F"
         
     # Kelvin to fahrenheit
     elif type == "kelvin" and convertTo == "fahrenheit":
-        celsius_temp = temperature - 273.15
-        fahrenheit = (celsius_temp * 9/5) + 32
+        celsius_temp = kelvinToCelcius(temperature)
+        fahrenheit = celciusToFahrenheit(celsius_temp)
         return f"Suhu {temperature} Kelvin dikonversi ke Fahrenheit = {fahrenheit} °F"
     
     # Fahrenheit to Celsius
     elif type == "fahrenheit" and convertTo == "celcius":
-        celsius = (temperature - 32) * 5/9
+        celsius = fahrenheitToCelcius(temperature)
         return f"Suhu {temperature} Fahrenheit dikonversi ke Celsius = {celsius} °C"
     
     # Fahrenheit to Kelvin
     elif type == "fahrenheit" and convertTo == "kelvin":
-        celsius_temp = (temperature - 32) * 5/9
-        kelvin = celsius_temp + 273.15
+        celsius_temp = fahrenheitToCelcius(temperature)
+        kelvin = celciusToKelvin(celsius_temp)
         return f"Suhu {temperature} Fahrenheit dikonversi ke Kelvin = {kelvin} K"
     
     # Invalid conversion
